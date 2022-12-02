@@ -1,0 +1,59 @@
+
+            HStack{
+                HStack{
+                    Button(action: {}, label: {Image("attach")})
+                    TextField(text: $userViewModel.textMessage.text,
+                              label: {Text("Написать сообщение")
+                        .font(.system(size: 14))}
+                              
+                    )
+                    .frame(width: 250, height: 18)
+                    .onSubmit {
+                        
+                    }
+                    Button(action: {userViewModel.sendMessage(userId: item!.id)}, label: {Image("send")})
+                } //TextFieldHstack
+                .frame(width: 343, height: 45)
+                .background(RoundedRectangle(cornerRadius: 10)
+                    .strokeBorder()
+                    .foregroundColor(Color.gray))
+            }
+            .frame(height: 106)
+            .frame(maxWidth: .infinity)
+            
+            
+            
+            
+            
+            VVerhniy tab
+                        Rectangle()
+                .frame(height: 135)
+                .aspectRatio(contentMode: .fill)
+                .foregroundColor(.white)
+                .background(
+                    Rectangle()
+                        .offset(y: 2)
+                        .foregroundColor(.gray)
+                        .opacity(0.2)
+                )
+                .overlay(
+                    HStack(alignment: .center){
+                        
+                        Spacer()
+                        Text(item!.name)
+                            .font(.system(size: 18))
+                        
+                        Spacer()
+                        AsyncImage(url: URL(string:  item!.avatar ?? ""))
+                        { image in
+                            image.resizable()
+                        } placeholder: {
+                            Image("sup")
+                        } .frame(width: 36, height: 36)
+                            .clipShape(Circle())
+                        
+                        Spacer()
+                    }//HstackOverlay
+                        .offset(y: 18)
+                )//Overlay
+                .edgesIgnoringSafeArea(.top)
